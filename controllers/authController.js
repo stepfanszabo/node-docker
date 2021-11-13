@@ -16,10 +16,12 @@ exports.signUp = async (req, res) => {
                 user: newUser,
             }
         })
+        return
     } catch (e) {
         res.status(400).json({
             status: "fail",
         })
+        return
     }
 }
 
@@ -32,6 +34,7 @@ exports.login = async (req, res) => {
                 status: "error",
                 message: "User not found"
             })
+            return
         }
         const isCorrect = await bcrypt.compare(password, user.password)
 
@@ -40,16 +43,19 @@ exports.login = async (req, res) => {
             res.status(200).json({
                 status: "success"
             })
+            return
         } else {
             res.status(400).json({
                 status: "error",
                 message: "Incorrect username or password"
             })
+            return
         }
     } catch (e) {
         res.status(400).json({
             status: "fail",
         })
+        return
     }
 
 }
