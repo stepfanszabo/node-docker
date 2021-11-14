@@ -24,5 +24,5 @@ jobs:
       run: docker-compose -f docker-compose.yml -f docker-compose.prod.yml build
       
     - name: Docker Push
-      run: docker push imstepfan/node-app:$(date +%s)
+      run: docker push imstepfan/node-app
   
