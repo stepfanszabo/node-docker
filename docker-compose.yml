@@ -9,7 +9,6 @@ services:
 
   node-app:
     build: .
-    image: imstepfan/node-app
     environment:
       - PORT=3000
     depends_on:

@@ -5,6 +5,7 @@ services:
       - "80:80"
 
   node-app:
+    image: imstepfan/node-app
     build:
       context: .
       args: 
