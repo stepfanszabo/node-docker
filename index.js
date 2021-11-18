@@ -1,6 +1,10 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+
+const axios = require('axios')
+const cheerio = require('cheerio')
+
 const { MONGO_USER, MONGO_PASSWORD, MONGO_IP, MONGO_PORT, REDIS_URL, REDIS_PORT, SESSION_SECRET } = require('./config/config')
 
 const redis = require('redis')
@@ -56,6 +60,32 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1/posts', postRouter)
 app.use('/api/v1/users', userRouter)
+
+const list = []
+
+app.use('/lufthansa', (req, res) => {
+    axios.get('https://www.lufthansa.com/es/en/europe-fares-economy-class')
+        .then((response) => {
+            const html = response.data
+            const $ = cheerio.load(html)
+            const scrapedData = [];
+            $("table > tbody > tr").each((index, element) => {
+                if (index === 0) return true;
+                const tds = $(element).find("td");
+                const service = $(tds[0]).text();
+                const elight = $(tds[1]).text();
+                const eclassic = $(tds[2]).text();
+                const eflex = $(tds[3]).text();
+                const bclass = $(tds[4]).text();
+                const tableRow = { service, elight, eclassic, eflex, bclass };
+                scrapedData.push(tableRow);
+            });
+            console.log({scrapedData})
+            res.json({scrapedData})
+        })
+        .catch((error) => console.log(error))
+
+})
 
 const port = process.env.PORT || 3000
 app.listen(port, () => console.log(`Listening on http://localhost:${port}`))
