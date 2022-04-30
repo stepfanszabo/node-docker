@@ -55,7 +55,7 @@ app.use(express.json())
 
 app.get('/', (req, res) => {
     console.log("hejhoo")
-    res.send("<h1>Hola, mucho gusto!!</h1>mukodik a fucking automatizacio!")
+    res.send("<h1>Hola, mucho gusto!!</h1>mukodik a fucking automatizacio let's get going")
 })
 
 app.use('/api/v1/posts', postRouter)
