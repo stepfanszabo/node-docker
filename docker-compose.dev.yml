@@ -17,7 +17,7 @@ services:
   #     - MONGO_PASSWORD=example
   #     - SESSION_SECRET=secret
   #   command: npm run dev
-  frontend:
+  node-app:
     image: imstepfan/frontend
     build:
       context: ./frontend

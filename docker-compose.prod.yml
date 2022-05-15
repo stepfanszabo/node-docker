@@ -4,8 +4,8 @@ services:
   #   ports:
   #     - "80:80"
 
-  frontend:
-    image: imstepfan/frontend
+  node-app:
+    image: imstepfan/node-app
     build:
       context: ./frontend
       args: 
