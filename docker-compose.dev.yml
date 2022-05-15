@@ -1,8 +1,8 @@
 version: "3.0"
 services:
-  # nginx:
-  #   ports:
-  #     - "3000:80"
+  nginx:
+    ports:
+      - "3000:80"
   # node-app:
   #   build:
   #     context: ./api
