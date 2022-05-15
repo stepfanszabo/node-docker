@@ -1,13 +1,13 @@
 version: "3.0"
 services:
-  nginx:
-    ports:
-      - "80:80"
+  # nginx:
+  #   ports:
+  #     - "80:80"
 
-  node-app:
-    image: imstepfan/node-app
+  frontend:
+    image: imstepfan/frontend
     build:
-      context: .
+      context: ./frontend
       args: 
         NODE_ENV: production
     environment:

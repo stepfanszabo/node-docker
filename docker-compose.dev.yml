@@ -1,16 +1,16 @@
 version: "3.0"
 services:
-  nginx:
-    ports:
-      - "3000:80"
+  # nginx:
+  #   ports:
+  #     - "3000:80"
   node-app:
     build:
-      context: .
+      context: ./api
       args: 
         NODE_ENV: development
     volumes:
-      - .:/app
-      - /app/node_modules
+      - .:/api
+      - /api/node_modules
     environment:
       - NODE_ENV=developement
       - MONGO_USER=root
