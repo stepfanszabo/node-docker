@@ -1,11 +1,11 @@
 version: "3.0"
 services:
   node-app:
-    build: ./api
+    build: .
     ports:
       - "3000:3000"
     volumes:
-      - .:/api
-      - /api/node_modules
+      - .:/app
+      - /app/node_modules
     environment:
       - PORT=3000
